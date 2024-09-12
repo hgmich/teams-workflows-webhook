@@ -57,7 +57,10 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          webhook-url: ${{ secrets.TEST_WEBHOOK_URL }}
+          body: |
+            - type: TextBlock
+              text: Hello, world!
 
       - name: Print Output
         id: output
