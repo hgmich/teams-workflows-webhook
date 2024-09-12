@@ -1,5 +1,7 @@
 import * as core from '@actions/core'
-import { wait } from './wait'
+import { parse as parseYaml } from 'yaml'
+import { MESSAGE_BASE } from './schema/index.js'
+import fetch from 'node-fetch'
 
 /**
  * The main function for the action.
@@ -7,18 +9,37 @@ import { wait } from './wait'
  */
 export async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
+    const webhookUrl = core.getInput('webhook-url')
+    const cards = parseYaml(core.getInput('body'))
+
+    const payload = { ...MESSAGE_BASE }
+    payload.attachments[0].content.body = cards
 
     // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    core.debug(`Sending payload: ${JSON.stringify(payload, null, 2)}`)
 
     // Log the current timestamp, wait, then log the new timestamp
     core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
+    const resp = await fetch(webhookUrl, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    })
     core.debug(new Date().toTimeString())
 
+    core.debug(`Response status: ${resp.status}`)
+    const body = await resp.text()
+    core.debug(`Response body: ${body}`)
+
+    if (!resp.ok) {
+      core.setFailed(
+        `Failed to send message to webhook URL: got status ${resp.status}`
+      )
+      return
+    }
+
     // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
+    core.setOutput('status', resp.status)
+    core.setOutput('body', body)
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
