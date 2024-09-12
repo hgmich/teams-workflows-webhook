@@ -9,8 +9,10 @@ import fetch from 'node-fetch-commonjs'
  */
 export async function run(): Promise<void> {
   try {
-    const webhookUrl = core.getInput('webhook-url')
-    const cards = parseYaml(core.getInput('body'))
+    const webhookUrl = core.getInput('webhook-url', { required: true })
+    const cards = parseYaml(
+      core.getInput('body', { trimWhitespace: false, required: true })
+    )
 
     const payload = { ...MESSAGE_BASE }
     payload.attachments[0].content.body = cards
