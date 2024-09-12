@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import { parse as parseYaml } from 'yaml'
-import { MESSAGE_BASE } from './schema/index.js'
-import fetch from 'node-fetch'
+import { MESSAGE_BASE } from './schema'
+import fetch from 'node-fetch-commonjs'
 
 /**
  * The main function for the action.

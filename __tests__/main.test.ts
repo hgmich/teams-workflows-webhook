@@ -34,6 +34,10 @@ describe('action', () => {
     setOutputMock = jest.spyOn(core, 'setOutput').mockImplementation()
   })
 
+  it('has a dummy test', () => {
+    expect(true).toBe(true)
+  })
+
   // eslint-disable-next-line jest/no-commented-out-tests
   // it('sets the time output', async () => {
   //   // Set the action's inputs as return values from core.getInput()

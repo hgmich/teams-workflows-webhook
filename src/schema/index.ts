@@ -1,4 +1,4 @@
-import * as ac15 from './adaptive-card-v1.5.js'
+import * as ac15 from './adaptive-card-v1.5'
 
 export interface WebhookPayload {
   type: 'message'
