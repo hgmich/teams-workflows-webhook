@@ -1,16 +1,17 @@
 {
-  "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
+  "name": "teams-workflows-webhook",
+  "description": "Sends a Teams message using the workflows webhook",
   "version": "0.0.0",
   "author": "",
   "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "homepage": "https://github.com/hgmich/teams-workflows-webhook",
+  "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/hgmich/teams-workflows-webhook"
   },
   "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "https://github.com/hgmich/teams-workflows-webhook/issues"
   },
   "keywords": [
     "actions",
@@ -21,7 +22,7 @@
     ".": "./dist/index.js"
   },
   "engines": {
-    "node": ">=21"
+    "node": ">=20"
   },
   "scripts": {
     "bundle": "npm run format:write && npm run package",
@@ -66,7 +67,9 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^1.10.1"
+    "@actions/core": "^1.10.1",
+    "node-fetch": "^3.3.2",
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
