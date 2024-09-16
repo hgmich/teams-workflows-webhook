@@ -60,6 +60,9 @@ jobs:
           webhook-url: ${{ secrets.TEST_WEBHOOK_URL }}
           body: |
             - type: TextBlock
+              text: Test Message
+              style: heading
+            - type: TextBlock
               text: Hello from ${{ github.repository }} commit ${{ github.sha }}!
 
       - name: Print Output
