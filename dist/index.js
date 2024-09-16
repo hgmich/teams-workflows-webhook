@@ -32795,6 +32795,7 @@ exports.MESSAGE_BASE = {
             contentUrl: null,
             content: {
                 $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
+                version: '1.4',
                 type: 'AdaptiveCard',
                 body: []
             }
