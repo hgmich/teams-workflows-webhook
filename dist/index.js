@@ -32736,14 +32736,17 @@ const core = __importStar(__nccwpck_require__(2186));
 const yaml_1 = __nccwpck_require__(4083);
 const schema_1 = __nccwpck_require__(8755);
 const node_fetch_commonjs_1 = __importDefault(__nccwpck_require__(8735));
+const jsonHeaders = {
+    'Content-Type': 'application/json'
+};
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
 async function run() {
     try {
-        const webhookUrl = core.getInput('webhook-url');
-        const cards = (0, yaml_1.parse)(core.getInput('body'));
+        const webhookUrl = core.getInput('webhook-url', { required: true });
+        const cards = (0, yaml_1.parse)(core.getInput('body', { trimWhitespace: false, required: true }));
         const payload = { ...schema_1.MESSAGE_BASE };
         payload.attachments[0].content.body = cards;
         // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
@@ -32752,7 +32755,8 @@ async function run() {
         core.debug(new Date().toTimeString());
         const resp = await (0, node_fetch_commonjs_1.default)(webhookUrl, {
             method: 'POST',
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            headers: jsonHeaders
         });
         core.debug(new Date().toTimeString());
         core.debug(`Response status: ${resp.status}`);
