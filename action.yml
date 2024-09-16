@@ -17,9 +17,11 @@ inputs:
     required: true
 
 # Define your outputs here.
-# outputs:
-#   time:
-#     description: 'Your output description here'
+outputs:
+  status:
+    description: 'Status code from workflow webhook request'
+  body:
+    description: 'Body of the response from the workflow webhook request'
 
 runs:
   using: node20
