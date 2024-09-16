@@ -20,7 +20,6 @@ export const MESSAGE_BASE: WebhookPayload = {
       content: {
         $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
         type: 'AdaptiveCard',
-        version: '1.5',
         body: []
       }
     }

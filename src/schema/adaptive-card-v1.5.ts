@@ -411,9 +411,9 @@ export type Element =
   | TextBlock
 
 export interface AdaptiveCardContent {
-  $schema: 'http://adaptivecards.io/schemas/adaptive-card.json'
+  $schema?: 'http://adaptivecards.io/schemas/adaptive-card.json'
   type: 'AdaptiveCard'
-  version: '1.5'
+  version?: '1.5'
   refresh?: Refresh
   authentication?: Authentication
   body?: Element[]
@@ -430,6 +430,5 @@ export interface AdaptiveCardContent {
 
 export const CARD_BASE: AdaptiveCardContent = {
   $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
-  type: 'AdaptiveCard',
-  version: '1.5'
+  type: 'AdaptiveCard'
 }
