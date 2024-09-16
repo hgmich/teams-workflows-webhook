@@ -61,7 +61,8 @@ jobs:
           body: |
             - type: TextBlock
               text: Test Message
-              style: heading
+              size: large
+              weight: bolder
             - type: TextBlock
               text: Hello from ${{ github.repository }} commit ${{ github.sha }}!
 

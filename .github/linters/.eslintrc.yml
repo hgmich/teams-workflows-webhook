@@ -15,6 +15,13 @@ ignorePatterns:
   - '*.json'
   - './lint-staged.config.js'
 
+ignores:
+  - lib/
+  - dist/
+  - node_modules/
+  - coverage/
+  - lint-staged.config.js
+
 parser: '@typescript-eslint/parser'
 
 parserOptions:
