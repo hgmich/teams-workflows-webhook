@@ -3,6 +3,10 @@ import { parse as parseYaml } from 'yaml'
 import { MESSAGE_BASE } from './schema'
 import fetch from 'node-fetch-commonjs'
 
+const jsonHeaders = {
+  'Content-Type': 'application/json'
+}
+
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
@@ -25,9 +29,7 @@ export async function run(): Promise<void> {
     const resp = await fetch(webhookUrl, {
       method: 'POST',
       body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers: jsonHeaders
     })
     core.debug(new Date().toTimeString())
 
