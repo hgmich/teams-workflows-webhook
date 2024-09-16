@@ -57,11 +57,10 @@ jobs:
         id: test-action
         uses: ./
         with:
-          # webhook-url: ${{ secrets.TEST_WEBHOOK_URL }}
-          webhook-url: 'https://webhook.site/52d76dde-fa03-4c99-b264-3d6ab6cf35dc'
+          webhook-url: ${{ secrets.TEST_WEBHOOK_URL }}
           body: |
             - type: TextBlock
-              text: Hello, world!
+              text: Hello from ${{ github.repository }} commit ${{ github.sha }}!
 
       - name: Print Output
         id: output
