@@ -1,7 +1,11 @@
 import * as core from '@actions/core'
 import { parse as parseYaml } from 'yaml'
-import { MESSAGE_BASE } from './schema/index.js'
-import fetch from 'node-fetch'
+import { MESSAGE_BASE } from './schema'
+import fetch from 'node-fetch-commonjs'
+
+const jsonHeaders = {
+  'Content-Type': 'application/json'
+}
 
 /**
  * The main function for the action.
@@ -9,8 +13,10 @@ import fetch from 'node-fetch'
  */
 export async function run(): Promise<void> {
   try {
-    const webhookUrl = core.getInput('webhook-url')
-    const cards = parseYaml(core.getInput('body'))
+    const webhookUrl = core.getInput('webhook-url', { required: true })
+    const cards = parseYaml(
+      core.getInput('body', { trimWhitespace: false, required: true })
+    )
 
     const payload = { ...MESSAGE_BASE }
     payload.attachments[0].content.body = cards
@@ -22,7 +28,8 @@ export async function run(): Promise<void> {
     core.debug(new Date().toTimeString())
     const resp = await fetch(webhookUrl, {
       method: 'POST',
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      headers: jsonHeaders
     })
     core.debug(new Date().toTimeString())
 

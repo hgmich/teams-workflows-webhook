@@ -23,12 +23,20 @@ export interface IElement extends IMinElement {
 }
 
 export type ActionStyle = 'default' | 'positive' | 'destructive'
+// v1.5+ only
+// export type ActionMode = 'primary' | 'secondary'
 
 export interface IAction extends IElement {
   title?: string
   iconUrl?: string
   id?: string
   style?: ActionStyle
+  fallback?: Action | FallbackOption
+  tooltip?: string
+  // v1.5+ only
+  // isEnabled? : boolean
+  // mode?: ActionMode
+  requires?: { [key: string]: string }
 }
 
 export interface OpenUrlAction extends IAction {
@@ -83,7 +91,8 @@ export interface Column extends IMinElement {
   bleed?: boolean
   fallback?: Column | FallbackOption
   minHeight?: string
-  rtl?: boolean
+  // v1.5+ only
+  // rtl?: boolean
   separator?: boolean
   spacing?: Spacing
   selectAction?: ISelectAction
@@ -124,7 +133,8 @@ export interface Container extends IElement {
   bleed?: boolean
   backgroundImage?: string | BackgroundImage
   minHeight?: string
-  rtl?: boolean
+  // v1.5+ only
+  // rtl?: boolean
 }
 
 export interface Fact {
@@ -152,13 +162,15 @@ export interface Image extends IElement {
 }
 
 export type ImageSize = 'auto' | 'stretch' | 'small' | 'medium' | 'large'
-export type ImageSetStyle = 'default' | 'stacked' | 'grid'
+// v1.6+ only
+// export type ImageSetStyle = 'default' | 'stacked' | 'grid'
 
 export interface ImageSet extends IElement {
   type: 'ImageSet'
   images: Image[]
   imageSize?: ImageSize
-  style?: ImageSetStyle
+  // v1.6+ only
+  // style?: ImageSetStyle
 }
 
 export type InputLabelPosition = 'inline' | 'above'
@@ -247,18 +259,20 @@ export interface CardMediaSource {
   mimeType?: string
 }
 
-export interface CaptionSource {
-  mimeType: string
-  url: string
-  label: string
-}
+// v1.6+ only
+// export interface CaptionSource {
+//   mimeType: string
+//   url: string
+//   label: string
+// }
 
 export interface Media extends IElement {
   type: 'Media'
   sources: CardMediaSource[]
   poster?: string
   altText?: string
-  capionSources?: CaptionSource[]
+  // v1.6+ only
+  // capionSources?: CaptionSource[]
 }
 
 export type Colors =
@@ -307,39 +321,44 @@ export type ContainerStyle =
 export type HorizontalAlignment = 'left' | 'center' | 'right'
 export type VerticalAlignment = 'top' | 'center' | 'bottom'
 
-export interface TableColumnDefinition {
-  width?: number
-}
+// v1.5+ only
+// export interface TableColumnDefinition {
+//   width?: number
+// }
 
-export interface TableRow {
-  type: 'TableRow'
-  cells?: TableCell[]
-}
+// v1.5+ only
+// export interface TableRow {
+//   type: 'TableRow'
+//   cells?: TableCell[]
+// }
 
-export interface TableCell {
-  type: 'TableCell'
-  items: Element[]
-  selectAction?: ISelectAction
-  style?: ContainerStyle
-  verticalContentAlignment?: VerticalAlignment
-  bleed?: boolean
-  backgroundImage?: string | BackgroundImage
-  minHeight?: string
-  rtl?: boolean
-}
+// v1.5+ only
+// export interface TableCell {
+//   type: 'TableCell'
+//   items: Element[]
+//   selectAction?: ISelectAction
+//   style?: ContainerStyle
+//   verticalContentAlignment?: VerticalAlignment
+//   bleed?: boolean
+//   backgroundImage?: string | BackgroundImage
+//   minHeight?: string
+//   rtl?: boolean
+// }
 
-export interface Table extends IElement {
-  type: 'Table'
-  columns?: TableColumnDefinition[]
-  rows?: TableRow[]
-  firstRowAsHeader?: boolean
-  showGridLines?: boolean
-  gridStyle?: ContainerStyle
-  horizontalCellContentAlignment?: HorizontalAlignment
-  verticalCellContentAlignment?: VerticalAlignment
-}
+// v1.5+ only
+// export interface Table extends IElement {
+//   type: 'Table'
+//   columns?: TableColumnDefinition[]
+//   rows?: TableRow[]
+//   firstRowAsHeader?: boolean
+//   showGridLines?: boolean
+//   gridStyle?: ContainerStyle
+//   horizontalCellContentAlignment?: HorizontalAlignment
+//   verticalCellContentAlignment?: VerticalAlignment
+// }
 
-export type TextBlockStyle = 'default' | 'heading'
+// v1.5+ only
+// export type TextBlockStyle = 'default' | 'heading'
 
 export interface TextBlock extends IElement {
   type: 'TextBlock'
@@ -352,12 +371,14 @@ export interface TextBlock extends IElement {
   size?: FontSize
   weight?: FontWeight
   wrap?: boolean
-  style?: TextBlockStyle
+  // v1.5+ only
+  // style?: TextBlockStyle
 }
 
 export interface Refresh {
   action?: ExecuteAction
-  expires?: string
+  // v1.6+ only
+  // expires?: string
   userIds?: string[]
 }
 
@@ -407,13 +428,14 @@ export type Element =
   | Input
   | Media
   | RichTextBlock
-  | Table
+  // v1.5+ only
+  // | Table
   | TextBlock
 
 export interface AdaptiveCardContent {
-  $schema: 'http://adaptivecards.io/schemas/adaptive-card.json'
+  $schema?: 'http://adaptivecards.io/schemas/adaptive-card.json'
   type: 'AdaptiveCard'
-  version: '1.5'
+  version?: '1.4'
   refresh?: Refresh
   authentication?: Authentication
   body?: Element[]
@@ -422,7 +444,8 @@ export interface AdaptiveCardContent {
   fallbackText?: string
   backgroundImage?: string | BackgroundImage
   minHeight?: string
-  rtl?: boolean
+  // v1.5+ only
+  // rtl?: boolean
   speak?: string
   lang?: string
   verticalContentAlignment?: VerticalAlignment
@@ -430,6 +453,5 @@ export interface AdaptiveCardContent {
 
 export const CARD_BASE: AdaptiveCardContent = {
   $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
-  type: 'AdaptiveCard',
-  version: '1.5'
+  type: 'AdaptiveCard'
 }

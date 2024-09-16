@@ -1,4 +1,4 @@
-import * as ac15 from './adaptive-card-v1.5.js'
+import * as ac14 from './adaptive-card-v1.4'
 
 export interface WebhookPayload {
   type: 'message'
@@ -8,7 +8,7 @@ export interface WebhookPayload {
 export interface AdaptiveCardItem {
   contentType: 'application/vnd.microsoft.card.adaptive'
   contentUrl: null
-  content: ac15.AdaptiveCardContent
+  content: ac14.AdaptiveCardContent
 }
 
 export const MESSAGE_BASE: WebhookPayload = {
@@ -19,8 +19,8 @@ export const MESSAGE_BASE: WebhookPayload = {
       contentUrl: null,
       content: {
         $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
+        version: '1.4',
         type: 'AdaptiveCard',
-        version: '1.5',
         body: []
       }
     }
