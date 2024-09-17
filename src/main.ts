@@ -14,9 +14,13 @@ const jsonHeaders = {
 export async function run(): Promise<void> {
   try {
     const webhookUrl = core.getInput('webhook-url', { required: true })
-    const cards = parseYaml(
+    const cards: unknown = parseYaml(
       core.getInput('body', { trimWhitespace: false, required: true })
     )
+
+    if (!(cards instanceof Array)) {
+      throw new Error('Body must be a YAML array')
+    }
 
     const payload = { ...MESSAGE_BASE }
     payload.attachments[0].content.body = cards

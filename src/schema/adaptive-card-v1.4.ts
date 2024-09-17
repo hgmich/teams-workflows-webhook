@@ -12,7 +12,7 @@ export type Spacing =
 export interface IMinElement {
   id?: string
   isVisible?: boolean
-  requires?: { [key: string]: string }
+  requires?: Record<string, string>
 }
 
 export interface IElement extends IMinElement {
@@ -36,7 +36,7 @@ export interface IAction extends IElement {
   // v1.5+ only
   // isEnabled? : boolean
   // mode?: ActionMode
-  requires?: { [key: string]: string }
+  requires?: Record<string, string>
 }
 
 export interface OpenUrlAction extends IAction {
@@ -48,7 +48,7 @@ export type AssociatedInputs = 'auto' | 'none'
 
 export interface SubmitAction extends IAction {
   type: 'Action.Submit'
-  data?: { [key: string]: object | string | number | boolean }
+  data?: Record<string, object | string | number | boolean>
   associatedInputs?: AssociatedInputs
 }
 
@@ -70,7 +70,7 @@ export interface ToggleVisibilityAction extends IAction {
 export interface ExecuteAction extends IAction {
   type: 'Action.Execute'
   verb?: string
-  data?: { [key: string]: object | string | number | boolean }
+  data?: Record<string, object | string | number | boolean>
   associatedInputs?: AssociatedInputs
 }
 
