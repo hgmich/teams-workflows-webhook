@@ -32747,6 +32747,9 @@ async function run() {
     try {
         const webhookUrl = core.getInput('webhook-url', { required: true });
         const cards = (0, yaml_1.parse)(core.getInput('body', { trimWhitespace: false, required: true }));
+        if (!(cards instanceof Array)) {
+            throw new Error('Body must be a YAML array');
+        }
         const payload = { ...schema_1.MESSAGE_BASE };
         payload.attachments[0].content.body = cards;
         // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
