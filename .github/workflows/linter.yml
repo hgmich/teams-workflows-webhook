@@ -49,3 +49,4 @@ jobs:
           VALIDATE_TYPESCRIPT_STANDARD: false
           TYPESCRIPT_ES_CONFIG_FILE: eslint.config.js
           JAVASCRIPT_ES_CONFIG_FILE: eslint.config.js
+          VALIDATE_JSON: false
