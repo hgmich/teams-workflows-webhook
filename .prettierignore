@@ -1,4 +1,5 @@
 dist/
 node_modules/
 coverage/
-./eslint.config.js
+eslint.config.js
+!.github/linters/eslint.config.js
